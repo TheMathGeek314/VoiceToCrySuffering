@@ -10,7 +10,7 @@ using SFCWavUtils = SFCore.Utils.WavUtils;
 namespace VoiceToCrySuffering {
     public class VoiceToCrySuffering: Mod {
         new public string GetName() => "VoiceToCrySuffering";
-        public override string GetVersion() => "1.0.0.0";
+        public override string GetVersion() => "1.0.0.1";
         public override void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects) {
             On.PlayMakerFSM.OnEnable += editFSM;
         }
@@ -18,7 +18,7 @@ namespace VoiceToCrySuffering {
         private void editFSM(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self) {
             orig(self);
             if(self.gameObject.name == "HK Prime" && self.FsmName == "Control") {
-                FsmState roar = self.GetState("Intro Roar");
+                FsmState roar = self.GetValidState("Intro Roar");
                 AudioPlayerOneShotSingle yell = new();
                 AudioPlayerOneShotSingle toCopy = roar.Actions[8] as AudioPlayerOneShotSingle;
                 yell.audioPlayer = toCopy.audioPlayer;
