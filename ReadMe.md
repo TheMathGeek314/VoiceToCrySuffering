@@ -1,3 +1,3 @@
 # VoiceToCrySuffering
 
-A mod for the game Hollow Knight.
+A minor audio change to the Pure Vessel fight.

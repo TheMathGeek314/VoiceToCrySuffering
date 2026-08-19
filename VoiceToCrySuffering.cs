@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Modding;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using Modding;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using Satchel;
@@ -10,9 +10,13 @@ using SFCWavUtils = SFCore.Utils.WavUtils;
 namespace VoiceToCrySuffering {
     public class VoiceToCrySuffering: Mod {
         new public string GetName() => "VoiceToCrySuffering";
-        public override string GetVersion() => "1.0.0.1";
+        public override string GetVersion() => "1.0.1.0";
+
+        Dictionary<string, Dictionary<string, string>> currentEntrySheets = typeof(Language.Language).GetField("currentEntrySheets", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null) as Dictionary<string, Dictionary<string, string>>;
+
         public override void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects) {
             On.PlayMakerFSM.OnEnable += editFSM;
+            currentEntrySheets["Minor NPC"]["KING_ABYSS_04"] = "A voice to cry suffering.";
         }
 
         private void editFSM(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self) {
